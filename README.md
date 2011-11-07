@@ -12,6 +12,16 @@
     var aTimeUUID = UUID.newTS(); // Generate a V1 TimeUUID
     console.log( aTimeUUID.toString();
 
+    var today = new Date().getTime();
+    var last30days = (new Date().setDate( today.getDate() - 30 )).getTime();
+
+    var rangeStart = UUID.firstUUIDForTime( last30days );
+    var rangeEnd = UUID.lastUUIDForTime( today );
+
+    // Example using cassandra
+    var query = ...( "select first 50 reversed ?..? from user_twits where key=?", [ rangeStart, rangeEnd, "patricknegri" ]);
+    
+
 ## Instalation
 
   $ npm install uuid-js
