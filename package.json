@@ -1,7 +1,7 @@
 {
   "name" : "uuid-js",
   "description" : "A js library to generate and parse UUIDs,TimeUUIDs and generate TimeUUID based on Data for range selections",
-  "version" : "0.5.3",
+  "version" : "0.5.4",
   "author" : "Patrick Negri <patrick@iugu.com.br>",
   "homepage": "http://github.com/pnegri/uuid-js",
   "contributors" : ["Gary Dusbabek <gdusbabek@gmail.com>"],
