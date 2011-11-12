@@ -32,7 +32,7 @@ $ npm install uuid-js
 
 ## Functions List
 
-These are avaiable just with require
+These are available just with require and return an instance of the UUID object:
 
 ```javascript
 UUID.new(); // Generate V4 UUID
@@ -54,7 +54,7 @@ UUID.fromBinary( binary ); // Generate a UUID object from binary
 
 ## Methods List
 
-These must be called with a instanced object.
+These must be called on an instance of the UUID object:
 
 ```javascript
 aUUID.fromParts( timeLow, timeMid, timeHiAndVersion, clockSeqHiAndReserved, clockSeqLow, node );
