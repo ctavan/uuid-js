@@ -16,8 +16,8 @@ console.log( uuid1.toString() );
 var today = new Date().getTime();
 var last30days = (new Date().setDate( today.getDate() - 30 )).getTime();
 
-var rangeStart = UUID.firstUUIDForTime( last30days );
-var rangeEnd = UUID.lastUUIDForTime( today );
+var rangeStart = UUID.firstFromTime( last30days );
+var rangeEnd = UUID.lastFromTime( today );
 
 // Example using cassandra
 var query = ...( "select first 50 reversed ?..? from user_twits where key=?", [ rangeStart, rangeEnd, "patricknegri" ]);
@@ -41,9 +41,9 @@ UUID.create(1); // Generate V1 TimeUUID
 
 UUID.fromTime( time, last ); // Generate a V1 empty TimeUUID from a Date object (Ex: new Date().getTime() )
 
-UUID.firstUUIDForTime( time ); // Same as fromTime but first sequence
+UUID.firstFromTime( time ); // Same as fromTime but first sequence
 
-UUID.lastUUIDForTime( time ); // Same as fromTime but last sequence
+UUID.lastFromTime( time ); // Same as fromTime but last sequence
 
 UUID.fromURN( strId ); // Generate a UUID object from string
 
