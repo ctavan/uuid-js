@@ -132,6 +132,7 @@ exports['v4 UUID: uuid.toBytes()'] = function() {
   assert.equal(uuid.hex, parts.join('-'));
 };
 
+
 exports['v4 UUID: check that they are not time-ordered'] = function() {
   var unsorted = [];
   var sorted = [];
@@ -233,6 +234,35 @@ exports['v1 UUID: check that they are time-ordered'] = function() {
     check();
   };
   next();
+};
+
+
+exports['firstUUIDForTime()'] = function() {
+  var date = new Date();
+  date = date.getTime();
+
+  var uuid = UUID.firstUUIDForTime(date, true);
+};
+
+
+exports['lastUUIDForTime()'] = function() {
+  var date = new Date();
+  date = date.getTime();
+
+  var uuid = UUID.lastUUIDForTime(date, true);
+
+  console.log(uuid);
+};
+
+
+exports['fromTime()'] = function() {
+  var date = new Date();
+  date = date.getTime();
+
+  var uuidFirst = UUID.fromTime(date, false);
+  var uuidLast = UUID.fromTime(date, true);
+
+  console.log(uuidFirst, uuidLast);
 };
 
 
