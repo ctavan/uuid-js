@@ -39,17 +39,17 @@ UUID.create(4); // Generate V4 UUID
 
 UUID.create(1); // Generate V1 TimeUUID
 
-UUID.fromTime( time, last ); // Generate a V1 empty TimeUUID from a Date object (Ex: new Date().getTime() )
+UUID.fromTime(time, last); // Generate a V1 empty TimeUUID from a Date object (Ex: new Date().getTime() )
 
-UUID.firstFromTime( time ); // Same as fromTime but first sequence
+UUID.firstFromTime(time); // Same as fromTime but first sequence
 
-UUID.lastFromTime( time ); // Same as fromTime but last sequence
+UUID.lastFromTime(time); // Same as fromTime but last sequence
 
-UUID.fromURN( strId ); // Generate a UUID object from string
+UUID.fromURN(strId); // Generate a UUID object from string
 
-UUID.fromBytes( ints ); // Generate a UUID object from bytes
+UUID.fromBytes(ints); // Generate a UUID object from bytes
 
-UUID.fromBinary( binary ); // Generate a UUID object from binary
+UUID.fromBinary(binary); // Generate a UUID object from binary
 ```
 
 ## Methods List
@@ -57,13 +57,13 @@ UUID.fromBinary( binary ); // Generate a UUID object from binary
 These must be called on an instance of the UUID object:
 
 ```javascript
-aUUID.fromParts( timeLow, timeMid, timeHiAndVersion, clockSeqHiAndReserved, clockSeqLow, node );
+uuid.fromParts(timeLow, timeMid, timeHiAndVersion, clockSeqHiAndReserved, clockSeqLow, node);
 
-aUUID.toString(); // hex string version of UUID
+uuid.toString(); // hex string version of UUID
 
-aUUID.toURN(); // same as hex, but with urn:uuid prefix
+uuid.toURN(); // same as hex, but with urn:uuid prefix
 
-aUUID.toBytes(); // convert to bytes
+uuid.toBytes(); // converted to an array of bytes
 ```
 
 ## Tests
