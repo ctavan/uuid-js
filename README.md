@@ -74,8 +74,9 @@ make test
 
 ## Contributors
 
+  * Christoph Tavan <dev@tavan.de>
+
 This work was based RFC and by the work of these people.
 
   * LiosK <contact@mail.liosk.net>
   * Gary Dusbabek <gdusbabek@gmail.com>
-  * Christoph Tavan <dev@tavan.de>
