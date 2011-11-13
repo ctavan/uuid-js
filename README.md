@@ -7,20 +7,20 @@ var UUID = require('uuid-js');
 
 var uuid4 = UUID.create(); // Generate a V4 UUID
 
-console.log( uuid4.toString() );
+console.log(uuid4.toString());
 // Prints: 896b677f-fb14-11e0-b14d-d11ca798dbac
 
 var uuid1 = UUID.create(1); // Generate a V1 TimeUUID
-console.log( uuid1.toString() );
+console.log(uuid1.toString());
 
 var today = new Date().getTime();
 var last30days = (new Date().setDate( today.getDate() - 30 )).getTime();
 
-var rangeStart = UUID.firstFromTime( last30days );
-var rangeEnd = UUID.lastFromTime( today );
+var rangeStart = UUID.firstFromTime(last30days);
+var rangeEnd = UUID.lastFromTime(today);
 
 // Example using cassandra
-var query = ...( "select first 50 reversed ?..? from user_twits where key=?", [ rangeStart, rangeEnd, "patricknegri" ]);
+var query = ...("select first 50 reversed ?..? from user_twits where key=?", [ rangeStart, rangeEnd, "patricknegri" ]);
 ```
 
 
