@@ -13,6 +13,8 @@ exports['Check UUID methods'] = function() {
     'limitUI14',
     'limitUI16',
     'limitUI32',
+    'limitUI40',
+    'limitUI48',
     'randomUI04',
     'randomUI06',
     'randomUI08',
@@ -163,7 +165,6 @@ exports['v1 UUID: uuid = UUID.create(1) -> test properties'] = function() {
       found++;
       continue;
     }
-    console.log(key);
     assert.ok(false, 'Found unexpected property in uuid instance: ' + key);
   }
   assert.equal(found, properties.length);
@@ -250,8 +251,6 @@ exports['lastUUIDForTime()'] = function() {
   date = date.getTime();
 
   var uuid = UUID.lastUUIDForTime(date, true);
-
-  console.log(uuid);
 };
 
 
@@ -262,7 +261,7 @@ exports['fromTime()'] = function() {
   var uuidFirst = UUID.fromTime(date, false);
   var uuidLast = UUID.fromTime(date, true);
 
-  console.log(uuidFirst, uuidLast);
+  assert.strictEqual(uuidFirst.toString().substr(0, 19), uuidLast.toString().substr(0, 19), 'Timestamp part of first and last not equal');
 };
 
 
