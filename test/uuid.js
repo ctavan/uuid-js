@@ -3,6 +3,10 @@ var assert = require('assert');
 var sinon = require('sinon');
 var util = require('util');
 
+function isUUID(str) {
+  return str.match(/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/);
+}
+
 exports['Check UUID methods'] = function() {
   var methods = [
     'maxFromBits',
@@ -95,7 +99,7 @@ exports['v4 UUID: uuid = UUID.create(4) -> test properties'] = function() {
   assert.equal(found, properties.length);
 
   assert.equal(uuid.version, 4, 'Unexpected version: ' + uuid.version);
-  assert.ok(uuid.hex.match(/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/), 'UUID semantically incorrect');
+  assert.ok(isUUID(uuid.hex), 'UUID semantically incorrect');
 };
 
 
@@ -173,7 +177,7 @@ exports['v1 UUID: uuid = UUID.create(1) -> test properties'] = function() {
   assert.equal(found, properties.length);
 
   assert.equal(uuid.version, 1, 'Unexpected version: ' + uuid.version);
-  assert.ok(uuid.hex.match(/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/), 'UUID semantically incorrect');
+  assert.ok(isUUID(uuid.hex), 'UUID semantically incorrect');
 };
 
 
@@ -249,6 +253,7 @@ exports['firstFromTime()'] = function() {
   var uuid = UUID.firstFromTime(date);
   assert.ok(spy.calledOnce);
   assert.ok(spy.calledWith(date, false));
+  assert.ok(isUUID(uuid.toString()), 'UUID semantically incorrect');
 
   spy.restore();
 };
@@ -262,6 +267,7 @@ exports['lastFromTime()'] = function() {
   var uuid = UUID.lastFromTime(date);
   assert.ok(spy.calledOnce);
   assert.ok(spy.calledWith(date, true));
+  assert.ok(isUUID(uuid.toString()), 'UUID semantically incorrect');
 
   spy.restore();
 };
