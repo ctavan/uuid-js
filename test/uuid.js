@@ -30,13 +30,16 @@ exports['Check UUID methods'] = function() {
     'paddedString',
     'getTimeFieldValues',
     'fromTime',
-    'firstUUIDForTime',
-    'lastUUIDForTime',
+    'firstFromTime',
+    'lastFromTime',
     'fromURN',
     'fromBytes',
     'fromBinary',
+    // Legacy methods:
     'new',
-    'newTS'
+    'newTS',
+    'firstUUIDForTime',
+    'lastUUIDForTime'
   ];
   var found = 0;
   for (var key in UUID) {
@@ -238,19 +241,29 @@ exports['v1 UUID: check that they are time-ordered'] = function() {
 };
 
 
-exports['firstUUIDForTime()'] = function() {
+exports['firstFromTime()'] = function() {
   var date = new Date();
   date = date.getTime();
+  var spy = sinon.spy(UUID, 'fromTime');
 
-  var uuid = UUID.firstUUIDForTime(date, true);
+  var uuid = UUID.firstFromTime(date);
+  assert.ok(spy.calledOnce);
+  assert.ok(spy.calledWith(date, false));
+
+  spy.restore();
 };
 
 
-exports['lastUUIDForTime()'] = function() {
+exports['lastFromTime()'] = function() {
   var date = new Date();
   date = date.getTime();
+  var spy = sinon.spy(UUID, 'fromTime');
 
-  var uuid = UUID.lastUUIDForTime(date, true);
+  var uuid = UUID.lastFromTime(date);
+  assert.ok(spy.calledOnce);
+  assert.ok(spy.calledWith(date, true));
+
+  spy.restore();
 };
 
 
@@ -308,6 +321,34 @@ exports['newTS() alias for create(1)'] = function() {
 
   assert.ok(spy.calledOnce);
   assert.ok(spy.calledWith(4));
+
+  spy.restore();
+};
+
+
+exports['firstUUIDForTime() alias for firstFromTime()'] = function() {
+  var spy = sinon.spy(UUID, 'firstFromTime');
+
+  var date = new Date();
+  date = date.getTime();
+  var uuid = UUID.firstUUIDForTime(date);
+
+  assert.ok(spy.calledOnce);
+  assert.ok(spy.calledWith(date));
+
+  spy.restore();
+};
+
+
+exports['lastUUIDForTime() alias for lastFromTime()'] = function() {
+  var spy = sinon.spy(UUID, 'lastFromTime');
+
+  var date = new Date();
+  date = date.getTime();
+  var uuid = UUID.lastUUIDForTime(date);
+
+  assert.ok(spy.calledOnce);
+  assert.ok(spy.calledWith(date));
 
   spy.restore();
 };
